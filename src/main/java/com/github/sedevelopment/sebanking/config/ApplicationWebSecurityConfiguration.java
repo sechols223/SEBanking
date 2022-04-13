@@ -10,36 +10,37 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class ApplicationWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LoggingAccessDeniedHandler accessDeniedHandler;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.authorizeRequests()
-                .antMatchers(
-                        "/",
-                        "/js/**",
-                        "/css/**",
-                        "/img/**",
-                        "/webjars/",
-                        "/webjars/**").permitAll()
-                .antMatchers("/user/**").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
+
+        httpSecurity.csrf().disable();
+
+        //Landing page
+        httpSecurity.authorizeRequests().antMatchers("/", "/login", "/logout");
+
+       //Access Denied Handler
+        httpSecurity.authorizeRequests().and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+
+        //ADMIN
+        httpSecurity.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+
+        //Login form
+        httpSecurity.authorizeRequests().and()
                 .formLogin()
+                .loginProcessingUrl("process_login")
                 .loginPage("/login")
-                .permitAll()
+                .defaultSuccessUrl("/userAccount")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                //logout
                 .and()
                 .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll()
-                .and()
-                .exceptionHandling()
-                .accessDeniedHandler(accessDeniedHandler);
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/logoutSuccess");
     }
 }

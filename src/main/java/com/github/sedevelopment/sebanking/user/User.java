@@ -1,6 +1,7 @@
 package com.github.sedevelopment.sebanking.user;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Table(name="users" , schema="banking")
 @Entity
@@ -22,6 +23,7 @@ public class User {
     @Column(name="password")
     private String password;
 
+    @Email
     @Column(name="email")
     private String email;
 
@@ -71,5 +73,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return this.username + "/" + this.password;
     }
 }
