@@ -1,8 +1,10 @@
 package com.github.sedevelopment.sebanking.models.user;
 
-import javax.persistence.*;
-import javax.validation.constraints.Email;
+import jakarta.validation.constraints.Email;
 
+import javax.persistence.*;
+
+@SuppressWarnings("unused")
 @Table(name="users" , schema="banking")
 @Entity
 public class User {
@@ -26,6 +28,17 @@ public class User {
     @Email
     @Column(name="email")
     private String email;
+
+    public User(String firstname, String lastname, String username, String password, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User() {
+    }
 
     public int getId() {
         return id;

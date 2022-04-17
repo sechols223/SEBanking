@@ -1,4 +1,4 @@
-package com.github.sedevelopment.sebanking.controllers;
+package com.github.sedevelopment.sebanking.web.controllers;
 
 import com.github.sedevelopment.sebanking.models.user.User;
 import jakarta.validation.Valid;

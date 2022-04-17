@@ -1,4 +1,4 @@
-package com.github.sedevelopment.sebanking.dto;
+package com.github.sedevelopment.sebanking.web.dto;
 
 public class UserRegistrationDTO {
 }
