@@ -3,35 +3,33 @@ package com.github.sedevelopment.sebanking.models.role;
 import javax.persistence.*;
 
 @Entity
-@Table(name="app_roles")
+@Table(name = "role")
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private int id;
+    private Long id;
+    private String name;
 
-    private String roleName;
+    public Role() {
 
-    public Role(){}
-
-    public Role(String roleName) {
-        super();
-        this.roleName = roleName;
     }
 
-    public int getId() {
+    public Role(String name) {
+        super();
+        this.name = name;
+    }
+
+    public Long getId() {
         return id;
     }
-
-    public String getRoleName() {
-        return this.roleName;
-    }
-
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 }

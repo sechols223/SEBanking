@@ -1,17 +1,19 @@
 package com.github.sedevelopment.sebanking.models.user;
 
-import jakarta.validation.constraints.Email;
+import com.github.sedevelopment.sebanking.models.role.Role;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @SuppressWarnings("unused")
-@Table(name="users" , schema="banking")
+@Table(name="users")
 @Entity
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long user_id;
 
     @Column(name="firstname")
     private String firstname;
@@ -25,31 +27,40 @@ public class User {
     @Column(name="password")
     private String password;
 
-    @Email
     @Column(name="email")
     private String email;
 
-    public User(String firstname, String lastname, String username, String password, String email) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
+    @ManyToMany(targetEntity=Role.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 
     public User() {
     }
 
-    public int getId() {
-        return id;
+    public User(String firstName, String lastName, String email, String encode, Collection < Role > roles) {
+        super();
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Long getId() {
+        return this.user_id;
+    }
+
+    public void setId(Long id) {
+        this.user_id = id;
     }
 
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -57,7 +68,7 @@ public class User {
     }
 
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     public void setLastname(String lastname) {
@@ -65,7 +76,7 @@ public class User {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -81,11 +92,18 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Collection <Role> getRoles() {
+        return roles;
+    }
+    public void setRoles(Collection < Role > roles) {
+        this.roles = roles;
     }
 
     @Override

@@ -8,35 +8,52 @@
 <body>
 <div layout:fragment="content" th:remove="tag">
 
-  <div class="container">
-      <div class="">
-    <form class="form-register">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
 
-        <h1 class="h3  mb-3 font-weight-normal">Please register </h1>
+                <!-- success message -->
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">You've successfully registered
+                        to our awesome app!</div>
+                </div>
 
-        <label for="inputFirstName" class="sr-only">First Name</label>
-        <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" required="required" autofocus="">
+                <h1>Registration</h1>
 
-        <label for="inputLastName" class="sr-only">Last Name</label>
-        <input type="text" id="inputLastName" class="form-control" placeholder="First Name" required="required" autofocus="">
+                <form th:action="@{/registration}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <label class="control-label" for="firstName"> First Name </label>
+                        <input id="firstName" class="form-control" th:field="*{firstName}"
+                               required autofocus="autofocus" />
+                    </div>
 
+                    <div class="form-group">
+                        <label class="control-label" for="lastName"> Last Name </label> <input
+                            id="lastName" class="form-control" th:field="*{lastName}"
+                            required autofocus="autofocus" />
+                    </div>
 
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="">
+                    <div class="form-group">
+                        <label class="control-label" for="email"> Email </label> <input
+                            id="email" class="form-control" th:field="*{email}" required
+                            autofocus="autofocus" />
+                    </div>
 
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="First Name" required="required" autofocus="">
+                    <div class="form-group">
+                        <label class="control-label" for="password"> Password </label> <input
+                            id="password" class="form-control" type="password"
+                            th:field="*{password}" required autofocus="autofocus" />
+                    </div>
 
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Register</button>
+                        <span>Already registered? <a href="/" th:href="@{/login}">Login
+        here</a></span>
+                    </div>
+                </form>
+            </div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">© 2022</p>
-    </form>
+    </div>
 </div>
 
 <p><a href="/" th:href="@{/}">Back to home page</a></p>
