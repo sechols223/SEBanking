@@ -1,4 +1,4 @@
-package com.github.sedevelopment.sebanking.data.user;
+package com.github.sedevelopment.sebanking.models.user;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

@@ -1,4 +1,4 @@
-package com.github.sedevelopment.sebanking.data.role;
+package com.github.sedevelopment.sebanking.models.role;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
