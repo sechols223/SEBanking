@@ -10,7 +10,7 @@
     </parent>
     <groupId>me.practice</groupId>
     <artifactId>sebankingtesetingr</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.1</version>
     <name>sebankingteseting</name>
     <description>sebankingteseting</description>
     <properties>
@@ -52,6 +52,11 @@
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
         </dependency>
 
         <dependency>
@@ -100,6 +105,25 @@
             <artifactId>jquery</artifactId>
             <version>3.6.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.4.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+
+
     </dependencies>
     <build>
         <plugins>

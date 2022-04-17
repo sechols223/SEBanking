@@ -5,27 +5,60 @@
 <head>
     <title>Login</title>
 </head>
-<body>
+<body style=" background-color: #8BC6EC;
+background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
+">
 <div layout:fragment="content" th:remove="tag">
 
-    <form class="form-signin">
-        <img class="mb-4" src="logo.jpg" th:src="@{logo.jpg}" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-6 col-md-offset-3 text-center">
+
+                <h1>Login</h1>
+                <form th:action="@{/login}" method="post">
+
+                    <!-- error message -->
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">Invalid username or
+                            password.</div>
+                    </div>
+
+                    <!-- logout message -->
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-info">You have been logged out.</div>
+                    </div>
+
+                    <div class = "form-group">
+                        <label for ="username"> Username </label> :
+                        <input type="text" class = "form-control" id ="username" name = "username"
+                               placeholder="Enter Username" autofocus="autofocus">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>: <input type="password"
+                                                                       id="password" name="password" class="form-control"
+                                                                       placeholder="Enter Password" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit" name="login-submit" id="login-submit"
+                                       class="form-control btn btn-primary" value="Log In" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group">
+      <span>New user? <a href="/" th:href="@{/registration}">Register
+        here</a></span>
+                </div>
+            </div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-    </form>
-        </div>
+    </div>
+</div>
 
     <p><a href="/" th:href="@{/}">Back to home page</a></p>
-
 </body>
 </html>
