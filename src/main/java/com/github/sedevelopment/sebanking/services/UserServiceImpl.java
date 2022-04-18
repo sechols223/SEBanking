@@ -5,6 +5,7 @@ import com.github.sedevelopment.sebanking.models.user.User;
 import com.github.sedevelopment.sebanking.repositories.UserRepository;
 import com.github.sedevelopment.sebanking.web.dto.UserRegistrationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Autowired
+    @Lazy
     private BCryptPasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository) {
